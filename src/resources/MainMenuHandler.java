@@ -63,6 +63,6 @@ public class MainMenuHandler {
         return getMenuString() + "\n [ SETTINGS ]\n No settings yet";
     }
     public static String getCreditsText() {
-        return getMenuString() + "\n [ CREDITS ]\n github.com/pedroletti\n";
+        return getMenuString() + "\n [ CREDITS ]\n github.com/pedroletti\n\n [ ASCII ART ]\n Modified & Used art from\n asciiart.eu";
     }
 }
