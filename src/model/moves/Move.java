@@ -6,6 +6,7 @@ public abstract class Move implements Serializable {
     private static final long serialVersionUID = 1L;
     private String name;
     private MoveType type;
+    int cost;
 
     public enum MoveType {
         ATTACK, POWERUP, WEAKEN
@@ -20,6 +21,13 @@ public abstract class Move implements Serializable {
         this.type = type;
     }
 
+    public Move(String name, MoveType type, int cost) {
+        this.name = name;
+        this.type = type;
+        this.cost = cost;
+    }
+
     public String getName() { return name; }
     public MoveType getType() { return type; }
+    public int getCost() { return cost; }
 }

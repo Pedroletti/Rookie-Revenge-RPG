@@ -10,6 +10,7 @@ public class MainFrame extends JFrame {
     private JTextArea display;
     private JTextField inputField;
     private GameManager gameManager;
+    JScrollPane scrollPane;
 
     public MainFrame() {
         initGUI();
@@ -36,7 +37,7 @@ public class MainFrame extends JFrame {
         display.setFont(new Font("Monospaced", Font.BOLD, 14));
         display.setMargin(new Insets(10, 10, 10, 10));
 
-        JScrollPane scrollPane = new JScrollPane(display);
+        scrollPane = new JScrollPane(display);
         scrollPane.getVerticalScrollBar().setPreferredSize(new Dimension(0, 0));
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.setBorder(null);
@@ -81,4 +82,6 @@ public class MainFrame extends JFrame {
 
         this.setVisible(true);
     }
+
+
 }

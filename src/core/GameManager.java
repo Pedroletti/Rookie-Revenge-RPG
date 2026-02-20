@@ -1,15 +1,14 @@
 package core;
 
 import javax.swing.*;
+import javax.swing.text.DefaultCaret;
 
 import static resources.BattleStrings.getBattleString;
-import static resources.MainMenuHandler.*;
+import static resources.MainMenuStrings.*;
 
-import core.handlers.BattleHandler;
-import core.handlers.GameMenuHandler;
-import core.handlers.MainMenuHandler;
-import core.handlers.OverviewHandler;
+import core.handlers.*;
 import model.*;
+import utils.SaveManager;
 import utils.StringReader;
 
 import java.awt.*;
@@ -24,15 +23,16 @@ public class GameManager {
     private StringReader sr;
     private MainMenuHandler menuHandler;
     public GameMenuHandler gameHandler;
-    private OverviewHandler overviewHandler;
+    private OverworldHandler overviewHandler;
     public BattleHandler battleHandler;
+    public StoreHandler storeHandler;
     public boolean isProcessing;
     public Rookie enemy;
     public GameData data;
     public Battleground battleground;
 
     public enum GameState {
-        MAIN_MENU, GAME_MENU, OVERWORLD, BATTLE
+        MAIN_MENU, GAME_MENU, OVERWORLD, BATTLE, STORE, TRAINING, STORY
     }
 
 
@@ -44,9 +44,11 @@ public class GameManager {
         isProcessing = false;
         data = new GameData();
         display.setText(getMenuString());
+        storeHandler = new StoreHandler(this, player, sr, display);
     }
 
     public void handleSelection(String choice) {
+        if (choice.equalsIgnoreCase("exit")) System.exit(0);
         if (isProcessing) return;
         switch(gameState) {
             case MAIN_MENU:
@@ -60,13 +62,20 @@ public class GameManager {
                 break;
             case OVERWORLD:
                 if(overviewHandler == null) {
-                    overviewHandler = new OverviewHandler(this, player, display);
+                    overviewHandler = new OverworldHandler(this, player, sr, display);
                 }
                 overviewHandler.handleSelection(choice);
                 break;
             case BATTLE:
                 if(battleHandler == null) battleHandler = new BattleHandler(this, player, enemy, sr, display);
                 battleHandler.handleSelection(choice);
+                break;
+            case TRAINING:
+                storeHandler.handleTrainingSelection(choice);
+                break;
+            case STORY:
+                playStory();
+                break;
         }
     }
 
@@ -110,7 +119,7 @@ public class GameManager {
     public void loadScene(String sceneString) {
         isProcessing = true;
         display.append("\n Loading");
-        Timer timer = new Timer(400, null);
+        Timer timer = new Timer(600, null);
         timer.addActionListener(new ActionListener() {
             int count = 0;
 
@@ -129,17 +138,42 @@ public class GameManager {
         timer.start();
     }
 
-    public void loadBattle(Player player, Rookie enemy) {
+    public void loadBattle(boolean VS) {
+        if(enemy.getMessage() != null) {
+            loadScene("...");
+            gameState = GameState.STORY;
+            return;
+        }
+
+        DefaultCaret caret = (DefaultCaret) display.getCaret();
+        caret.setUpdatePolicy(DefaultCaret.NEVER_UPDATE);
+        display.setCaretPosition(0);
+
+        isProcessing = true;
         display.setText("");
-        final int flashes = 10;
+        final int flashes = 16;
+        Timer timer3 = new Timer(30, new ActionListener() {
+            private int count = 0;
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int maxNewLines = 40 - count;
+                String padding = "\n".repeat(Math.max(0, maxNewLines));
+                display.setText(padding + getBattleString(player.getRookie(), enemy));
+                count++;
+                if (count > 40) {
+                    gameState = GameState.BATTLE;
+                    isProcessing = false;
+                    caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
+                    ((Timer) e.getSource()).stop();
+                }
+            }
+        });
         Timer timer2 = new Timer(600, new ActionListener() {
             private int count = 0;
-
             @Override
             public void actionPerformed(ActionEvent e) {
                 switch (count) {
                     case 0:
-
                         display.append("\n\n\n\n\n\n       " + player.getRookie().getName());
                         count++;
                         break;
@@ -155,14 +189,13 @@ public class GameManager {
                         count++;
                         break;
                     default:
-                        display.setText(getBattleString(player.getRookie(), enemy));
                         ((Timer)e.getSource()).stop();
+                        timer3.start();
                 }
             }
         });
-        Timer timer = new Timer(150, new ActionListener() {
+        Timer timer = new Timer(100, new ActionListener() {
             private int count = 0;
-
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (count < flashes) {
@@ -175,10 +208,29 @@ public class GameManager {
                 } else {
                     display.setBackground(Color.BLACK);
                     ((Timer)e.getSource()).stop();
-                    timer2.start();
+                    if(VS) timer2.start();
+                    else timer3.start();
                 }
             }
         });
         timer.start();
+    }
+
+    private void playStory() {
+        if (sr == null) {
+            sr = new StringReader(enemy.getMessage());
+        }
+        String nextText = sr.next();
+
+        if (nextText != null) {
+            if (sr.isFirstLine())
+                display.setText(nextText + "\n");
+            else
+                display.append(nextText + "\n");
+        } else {
+            sr = null;
+            enemy.setMessage(null);
+            loadBattle(true);
+        }
     }
 }

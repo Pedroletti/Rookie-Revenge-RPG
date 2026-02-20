@@ -64,7 +64,10 @@ public class GameMenuStrings {
         return "+------------------------------------+\n" +
                 "+             DEVELOPER             +\n" +
                 "+------------------------------------+\n" +
-                " 1. LEVEL UP           2. RETURN\n" +
+                " 1. LEVEL UP           2. DEV\n" +
+                " 3. RELOAD             4. RETURN\n" +
+                "\n" +
+                "      INPUT NUMBER TO ADD GOLD\n" +
                 "+------------------------------------+";
     }
 }

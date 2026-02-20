@@ -19,7 +19,7 @@ public class BattleHandler {
     private final GameManager gameManager;
     private StringReader sr;
     private Player player;
-    private OverviewHandler overviewHandler;
+    private OverworldHandler overviewHandler;
     private Rookie rookie, enemy;
     private boolean win;
     private boolean exit;
@@ -63,7 +63,7 @@ public class BattleHandler {
         if(win) {
             player.getRookie().addExperience(enemy.getGiveExperience(), display);
             player.addGold(enemy.getGold());
-            gameManager.battleground.registerGymVictory();
+            if(gameManager.battleground.isGym()) gameManager.battleground.registerGymVictory();
         }
         gameManager.updatePlayer(player);
         display.append("\n > Press enter to continue.\n");
@@ -166,9 +166,8 @@ public class BattleHandler {
                         count++;
                         break;
                     case 9:
-                        display.setText("+------------------------------------+\n" +
-                                        "+               VICTORY              +\n" +
-                                        "+------------------------------------+\n");
+                        display.setText("" +
+                                        "+               VICTORY              +\n");
                         count++;
                         break;
                     case 10:
@@ -185,9 +184,8 @@ public class BattleHandler {
                         count++;
                         break;
                     case 14:
-                        display.setText("+------------------------------------+\n" +
-                                        "+               DEFEAT               +\n" +
-                                        "+------------------------------------+\n");
+                        display.setText("" +
+                                        "+               DEFEAT               +\n");
                         count++;
                         break;
                     case 15:
@@ -227,40 +225,49 @@ public class BattleHandler {
             int power = ((AttackMove) move).getBaseDamage();
             int a = user.getAttack();
             int d = target.getDefense();
-
-            double damageCalc = ((( (2.0 * user.getLevel() / 5.0) + 2.0 ) * power * ( (double)a / d) ) / 50.0) + 2.0;
-
+            double divisor = 12 + ((double) player.getRookie().getLevel() / 1.5);
+            double damageCalc = ((( (2.0 * user.getLevel() / 5.0) + 2.0 ) * power * ( (double)a / d) ) / (divisor) + 2.0);
             int dmg = (int) damageCalc;
 
+            double baseAccuracy = 0.85;
+            double speedBonus = (user.getSpeed() - target.getSpeed()) / 100.0;
+            double finalHitChance = baseAccuracy + speedBonus;
 
-            boolean isCritical = Math.random() < 0.10;
-            if (isCritical) {
-                dmg *= 2;
-                display.append("\n CRITICAL HIT!");
+            if (Math.random() > finalHitChance) {
+                display.append("\n " + target.getName() + " dodged the attack!");
+            } else {
+                boolean isCritical = Math.random() < 0.10;
+                if (isCritical) {
+                    dmg *= 2;
+                    display.append("\n CRITICAL HIT!");
+                }
+
+                target.takeDamage(dmg);
+                display.append("\n It dealt " + dmg + " damage!");
             }
 
-            target.takeDamage(dmg);
-            display.append("\n It dealt " + dmg + " damage!");
         }
         else if (move instanceof EffectMove) {
             EffectMove effect = (EffectMove) move;
             Move.TargetStat statToChange = effect.getStat();
-            int value = effect.getMultiplier();
+            double multiplier = effect.getMultiplier();
 
             Rookie subject = (move.getType() == Move.MoveType.POWERUP) ? user : target;
-            String changeType = (move.getType() == Move.MoveType.POWERUP) ? "rose" : "fell";
-
+            String changeType = (multiplier > 1.0) ? "rose" : "fell";
             switch (statToChange) {
                 case ATTACK:
-                    subject.setAttack(subject.getAttack() + value);
+                    int newAttack = (int)(subject.getAttack() * multiplier);
+                    subject.setAttack(Math.max(1, newAttack));
                     display.append("\n " + subject.getName() + "'s Attack " + changeType + "!");
                     break;
                 case DEFENSE:
-                    subject.setDefense(subject.getDefense() + value);
+                    int newDefense = (int)(subject.getDefense() * multiplier);
+                    subject.setDefense(Math.max(1, newDefense));
                     display.append("\n " + subject.getName() + "'s Defense " + changeType + "!");
                     break;
                 case SPEED:
-                    subject.setSpeed(subject.getSpeed() + value);
+                    int newSpeed = (int)(subject.getSpeed() * multiplier);
+                    subject.setSpeed(Math.max(1, newSpeed));
                     display.append("\n " + subject.getName() + "'s Speed " + changeType + "!");
                     break;
             }

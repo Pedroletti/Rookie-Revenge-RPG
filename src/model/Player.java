@@ -7,10 +7,12 @@ public class Player implements Serializable {
     private String name;
     private Rookie rookie;
     private int gold;
+    private boolean dev;
 
     public Player(String name) {
         this.name = name;
-        gold = 0;
+        gold = 100;
+        dev = false;
     }
 
     public void setRookie(Rookie r) {
@@ -22,6 +24,15 @@ public class Player implements Serializable {
 
     public Rookie getRookie() {
         return rookie;
+    }
+
+    public boolean toggleDev() {
+        this.dev = !this.dev;
+        return dev;
+    }
+
+    public boolean isDev() {
+        return dev;
     }
 
     public void setGold(int gold) { this.gold = gold; }

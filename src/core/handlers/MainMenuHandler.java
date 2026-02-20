@@ -5,7 +5,7 @@ import model.Player;
 import model.Rookie;
 import javax.swing.*;
 
-import static resources.MainMenuHandler.*;
+import static resources.MainMenuStrings.*;
 import static resources.GameMenuStrings.*;
 import static resources.ascii.Characters.*;
 
@@ -133,7 +133,7 @@ public class MainMenuHandler {
             case "2":
                 Rookie hans = new Rookie("Hans");
                 hans.addMove(gameManager.data.moveCatalog.get("PUNCH"));
-                hans.addMove(gameManager.data.moveCatalog.get("GUINNESS"));
+                hans.addMove(gameManager.data.moveCatalog.get("TROPIC THUNDER"));
                 hans.addMove(gameManager.data.moveCatalog.get("MEAN WORDS"));
                 hans.levelUp(4);
                 hans.setArt(getHansArt());

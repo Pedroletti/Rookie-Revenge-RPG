@@ -3,7 +3,7 @@ package core.handlers;
 import core.GameManager;
 import model.Player;
 import static resources.GameMenuStrings.*;
-import static resources.MainMenuHandler.getMenuString;
+import static resources.MainMenuStrings.getMenuString;
 import static resources.OverworldStrings.getOverworldString;
 import javax.swing.*;
 
@@ -95,11 +95,22 @@ public class GameMenuHandler {
                 display.append("\n " + player.getRookie().getName() + " reached level " + player.getRookie().getLevel() + "!");
                 break;
             case "2":
+                if(gameManager.player.toggleDev()) display.append("\n Dev Mode: Enabled");
+                else display.append("\n Dev Mode: Disabled");
+                break;
+            case "3":
+                gameManager.data.buildWorld();
+                display.append("\n World reloaded!");
+                break;
+            case "4":
                 gameState = GameState.MENU;
                 display.setText(getGameMenuString());
                 break;
             default:
-                display.append(getErrorText());
+                int amount = Integer.parseInt(choice);
+                player.addGold(amount);
+                display.append("\n You received " + amount + " gold!");
+                break;
         }
     }
     public void updatePlayer(Player player) {

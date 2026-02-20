@@ -2,7 +2,7 @@ package resources;
 
 import model.Player;
 
-public class MainMenuHandler {
+public class MainMenuStrings {
     public static String getMenuString() {
         return "+------------------------------------+\n" +
                 "+           ROOKIE REVENGE           +\n" +
@@ -63,6 +63,6 @@ public class MainMenuHandler {
         return getMenuString() + "\n [ SETTINGS ]\n No settings yet";
     }
     public static String getCreditsText() {
-        return getMenuString() + "\n [ CREDITS ]\n github.com/pedroletti\n\n [ ASCII ART ]\n Modified & Used art from\n asciiart.eu";
+        return getMenuString() + "\n [ CREDITS ]\n github.com/pedroletti\n[ ASCII ART ]\n Modified & Used art from\n asciiart.eu";
     }
 }

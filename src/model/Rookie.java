@@ -5,27 +5,34 @@ import javax.swing.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Rookie implements Serializable {
     private static final long serialVersionUID = 1L;
     private String name;
-    int health = 20;
-    int currentHealth = 20;
-    int attack = 10;
-    int defense = 10;
-    int speed = 10;
+    int health = 50;
+    int currentHealth = 50;
+    int attack = 15;
+    int defense = 15;
+    int speed = 15;
     int level = 1;
     int experience = 0;
     int levelExperience = 10;
-    int giveExperience = 9;
+    int giveExperience = 10;
     int giveGold = 10;
     private List<Move> moves;
-    private String ascii_art;
+    private String asciiArt;
+    private int mainStat;
+    private String[] message;
 
 
     public Rookie(String name) {
         this.name = name.toUpperCase();
         moves = new ArrayList<>();
+        Random rand = new Random();
+        this.mainStat = rand.nextInt(4);
+        this.message = null;
+        getRandomStats();
     }
 
     public Rookie(Rookie other) {
@@ -40,29 +47,51 @@ public class Rookie implements Serializable {
         this.giveExperience = other.giveExperience;
         this.giveGold = other.giveGold;
         this.moves = other.moves;
-        this.ascii_art = other.ascii_art;
+        this.asciiArt = other.asciiArt;
     }
 
-    public void getRandomStats () {
+    private void getRandomStats () {
         java.util.Random rand = new java.util.Random();
 
-        this.health += rand.nextInt(1) + 3;
-        this.attack += rand.nextInt(2) + 1;
-        this.defense += rand.nextInt(2) + 1;
-        this.speed  += rand.nextInt(2) + 1;
+        this.attack += rand.nextInt(4) + 1;
+        this.defense += rand.nextInt(4) + 1;
+        this.speed  += rand.nextInt(4) + 1;
 
         this.currentHealth = this.health;
     }
 
-    public void setArt(String art) { this.ascii_art = art; }
+    private void upgradeStats() {
+        switch (mainStat) {
+            case 0:
+                this.health += 1;
+                break;
+            case 1:
+                this.attack += 1;
+                break;
+            case 2:
+                this.defense += 1;
+                break;
+            case 3:
+                this.speed += 1;
+                break;
+        }
 
-    public String getArt() { return this.ascii_art; }
+        this.health += 3;
+        this.attack += 2;
+        this.defense += 2;
+        this.speed += 2;
+        this.currentHealth = this.health;
+    }
+
+    public void setArt(String art) { this.asciiArt = art; }
+
+    public String getArt() { return this.asciiArt; }
 
     public String getName() { return name; }
 
     public String getCurrentHealth() { return "HEALTH: " + currentHealth; }
 
-    public String getLevelString() { return "[LEVEL: " + level + "]"; }
+    public String getLevelString() { return "[L:" + level + "]"; }
 
     public int getLevel() { return level; }
 
@@ -81,6 +110,8 @@ public class Rookie implements Serializable {
     public void addMove(Move move) { moves.add(move); }
 
     public List<Move> getMoves() { return moves; }
+
+    public void setMove(Move move, int index) { moves.set(index, move); }
 
     public void takeDamage(int damage) { this.currentHealth -= damage; }
 
@@ -113,13 +144,12 @@ public class Rookie implements Serializable {
 
             int expIncrease = calculateExpGain();
             this.levelExperience += expIncrease;
-            int giveExpIncrease = (int)Math.round(expIncrease / 1.5);
+            int giveExpIncrease = (int)Math.round(expIncrease / 1.7);
             this.giveExperience += giveExpIncrease;
             int giveGoldIncrease = expIncrease * 2;
             this.giveGold += giveGoldIncrease;
 
-            getRandomStats();
-            System.out.println(this.name + " has reached level " + this.level + "!");
+            upgradeStats();
         }
     }
 
@@ -141,6 +171,25 @@ public class Rookie implements Serializable {
                 "\n Health: " + this.currentHealth +
                 "\n Attack: " + this.attack +
                 "\n Defense: " + this.defense +
-                "\n Speed: " + this.speed;
+                "\n Speed: " + this.speed +
+                getMainStat();
+    }
+
+    private String getMainStat() {
+        return switch (mainStat) {
+            case 0 -> "\n Main Stat: Health";
+            case 1 -> "\n Main Stat: Attack";
+            case 2 -> "\n Main Stat: Defense";
+            case 3 -> "\n Main Stat: Speed";
+            default -> "\n Main Stat: Unknown";
+        };
+    }
+
+    public void setMessage(String[] message) {
+        this.message = message;
+    }
+
+    public String[] getMessage() {
+        return this.message;
     }
 }

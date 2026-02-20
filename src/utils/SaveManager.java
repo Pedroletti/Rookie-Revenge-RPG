@@ -1,4 +1,6 @@
-package core;
+package utils;
+import core.GameData;
+
 import java.io.*;
 
 public class SaveManager {
