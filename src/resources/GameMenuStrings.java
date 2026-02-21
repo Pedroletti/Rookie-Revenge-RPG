@@ -29,7 +29,6 @@ public class GameMenuStrings {
                 "                 OTHER \n" +
                 "+------------------------------------+\n" +
                 " Gold: " + player.getGold() + "\n";
-
     }
 
     public static String getInstructionString() {
@@ -65,7 +64,8 @@ public class GameMenuStrings {
                 "+             DEVELOPER             +\n" +
                 "+------------------------------------+\n" +
                 " 1. LEVEL UP           2. DEV\n" +
-                " 3. RELOAD             4. RETURN\n" +
+                " 3. RELOAD             4. GOD KICK\n" +
+                " 5. RETURN\n" +
                 "\n" +
                 "      INPUT NUMBER TO ADD GOLD\n" +
                 "+------------------------------------+";

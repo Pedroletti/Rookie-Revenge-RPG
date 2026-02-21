@@ -19,6 +19,7 @@ public abstract class Move implements Serializable {
     public Move(String name, MoveType type) {
         this.name = name;
         this.type = type;
+        this.cost = 0;
     }
 
     public Move(String name, MoveType type, int cost) {

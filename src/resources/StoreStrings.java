@@ -15,26 +15,26 @@ public class StoreStrings {
                 " 1. TALK               2. RETURN\n" +
                 "+------------------------------------+\n" +
                 "             ATTACK MOVES\n" +
-                " 10. ROOKIE KICK, 500g     [DMG: 55]\n" +
-                " 11. PUKE ATTACK, 1500g    [DMG: 70]\n" +
-                " 12. F-SIDEFLIP, 3000g     [DMG: 85]\n" +
-                " 13. ROOKIE RAGE, 5000g    [DMG: 100]\n" +
+                " 10. ROOKIE KICK, 1000g    [DMG: 55]\n" +
+                " 11. PUKE ATTACK, 4000g    [DMG: 70]\n" +
+                " 12. F-SIDEFLIP, 8000g     [DMG: 85]\n" +
+                " 13. ROOKIE RAGE, 15000g   [DMG: 100]\n" +
                 "+------------------------------------+\n" +
                 "            POWERUP MOVES\n" +
-                " 20. FLASH TUX, 350g       [A: 30%]\n" +
-                " 21. SELL PATCHES, 350g    [D: 30%]\n" +
-                " 22. EYBRO, 350g           [S: 30%]\n" +
-                " 23. PEA SOUP, 1200g       [A: 44%]\n" +
-                " 24. SANTA'S LAP, 1350g    [D: 47%]\n" +
-                " 25. PUNSCH, 1500g         [S: 50%]\n" +
+                " 20. FLASH TUX, 1000g       [A: 30%]\n" +
+                " 21. SELL PATCHES, 1000g    [D: 30%]\n" +
+                " 22. EYBRO, 1000g           [S: 30%]\n" +
+                " 23. PEA SOUP, 4000g        [A: 44%]\n" +
+                " 24. SANTA'S LAP, 5000g     [D: 47%]\n" +
+                " 25. PUNSCH, 6000g          [S: 50%]\n" +
                 "+------------------------------------+\n" +
                 "             WEAKEN MOVES\n" +
-                " 30. CALCULUS, 1000g       [A: -30%]\n" +
-                " 31. HUNGOVER, 1000g       [D: -30%]\n" +
-                " 32. BENDER, 1000g         [S: -30%]\n" +
-                " 33. TENGIL SITTING, 3000g [D: -44%]\n" +
-                " 34. FERNET, 3500g         [D: -47%]\n" +
-                " 35. DUNKED, 4000g         [A: -50%]\n" +
+                " 30. CALCULUS, 1000g        [A: -30%]\n" +
+                " 31. HUNGOVER, 1000g        [D: -30%]\n" +
+                " 32. BENDER, 1000g          [S: -30%]\n" +
+                " 33. TENGIL SITTING, 4000g  [D: -44%]\n" +
+                " 34. FERNET, 5000g          [S: -47%]\n" +
+                " 35. DUNKED, 6000g          [A: -50%]\n" +
                 "+------------------------------------+";
     }
     public static String[] getIntroTexts() {

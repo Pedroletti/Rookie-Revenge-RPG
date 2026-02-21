@@ -38,7 +38,6 @@ public class GameMenuHandler {
             case DEV:
                 handleDevChoice(choice);
                 break;
-
         }
     }
 
@@ -51,6 +50,7 @@ public class GameMenuHandler {
                 break;
             case "2":
                 display.setText(getTeamString(player));
+                if(player.isDev()) display.append(player.getDev());
                 display.append(getEnterText());
                 gameState = GameState.IDLE;
                 break;
@@ -68,7 +68,7 @@ public class GameMenuHandler {
                 gameManager.loadScene(getMenuString());
                 gameManager.gameState = GameManager.GameState.MAIN_MENU;
                 break;
-            case "1337":
+            case "dev":
                 gameState = GameState.DEV;
                 display.setText(getDevString());
                 break;
@@ -103,6 +103,10 @@ public class GameMenuHandler {
                 display.append("\n World reloaded!");
                 break;
             case "4":
+                gameManager.player.getRookie().setMove(gameManager.storeHandler.moveCatalog.get("GOD KICK"), 0);
+                display.append("\n ATTACK updated --> " + gameManager.storeHandler.moveCatalog.get("GOD KICK").getName());
+                break;
+            case "5":
                 gameState = GameState.MENU;
                 display.setText(getGameMenuString());
                 break;

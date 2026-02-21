@@ -50,11 +50,11 @@ public class SaveManager {
         String userHome = System.getProperty("user.home");
 
         if (os.contains("win")) {
-            return System.getenv("AppData") + File.separator + "Rookiemon";
+            return System.getenv("AppData") + File.separator + "RR-RPG";
         } else if (os.contains("mac")) {
-            return userHome + "/Library/Application Support/Rookiemon";
+            return userHome + "/Library/Application Support/RR-RPG";
         } else {
-            return userHome + File.separator + ".rookiemon";
+            return userHome + File.separator + ".RR-RPG";
         }
     }
 

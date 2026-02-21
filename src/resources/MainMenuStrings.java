@@ -63,6 +63,6 @@ public class MainMenuStrings {
         return getMenuString() + "\n [ SETTINGS ]\n No settings yet";
     }
     public static String getCreditsText() {
-        return getMenuString() + "\n [ CREDITS ]\n github.com/pedroletti\n[ ASCII ART ]\n Modified & Used art from\n asciiart.eu";
+        return getMenuString() + "\n [ CREDITS ]\n github.com/pedroletti\n [ ASCII ART ]\n Modified & used art from\n www.asciiart.eu/\n Elissa Potier,\n Joan G. Stark.";
     }
 }

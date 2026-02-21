@@ -34,6 +34,9 @@ public class Player implements Serializable {
     public boolean isDev() {
         return dev;
     }
+    public String getDev() {
+        return "\n DEV MODE ACTIVATED";
+    }
 
     public void setGold(int gold) { this.gold = gold; }
     public int getGold() { return gold; }
