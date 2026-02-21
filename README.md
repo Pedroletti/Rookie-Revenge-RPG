@@ -10,6 +10,7 @@ Rookie Revenge RPG is a text-based, turn-based RPG game made in Java. Set in an 
 * **Save & Load System:** Features built-in persistence to save and resume game progress via serialized data handling.
 
 ## Patch notes
+* **V0.3-alpha** 2 new battlegrounds, 1 new gym, 9 unique enemies, enemy move selection updated.
 * **V0.2-alpha:** 2 new battlegrounds, 4 new unique enemies, health upgrade with balanced combat, shop added to game.
 * **V0.1-alpha:** First playable version. 2 playable battlegrounds, 4 unique characters, 5 unique enemies, 15 different moves.
 
