@@ -8,6 +8,7 @@ import utils.StringReader;
 
 import javax.swing.*;
 
+import static java.lang.Integer.parseInt;
 import static resources.GameMenuStrings.getGameMenuString;
 import static resources.GameMenuStrings.getErrorText;
 import static resources.StoreStrings.getIntroTexts;
@@ -34,24 +35,12 @@ public class OverworldHandler {
 
     public void handleSelection(String choice) {
         switch (choice) {
-            case "1":
-                handleBattle(0);
-                break;
-            case "2":
-                handleBattle(1);
-                break;
-            case "3":
-                handleBattle(2);
-                break;
-            case "4":
-                handleBattle(3);
-                break;
-            case "10":
+            case "14":
                 gameManager.gameState = GameManager.GameState.GAME_MENU;
                 display.setText(getGameMenuString());
                 break;
             default:
-                display.append(getErrorText());
+                handleBattle(parseInt(choice));
                 break;
         }
     }
@@ -60,6 +49,11 @@ public class OverworldHandler {
     }
 
     private void handleBattle(int battlegroundId) {
+        battlegroundId -= 1;
+        if(battlegroundId < 0 || battlegroundId > gameManager.data.battlegrounds.size()-1) {
+            display.append(getErrorText());
+            return;
+        }
         Battleground battleground = gameManager.data.battlegrounds.get(battlegroundId);
         if (!gameManager.player.isDev()) {
             if (battleground.isLocked()) {
@@ -88,19 +82,10 @@ public class OverworldHandler {
     }
 
     private boolean unlockBattleground(int battlegroundId) {
-        switch (battlegroundId) {
-            case 2:
-                if(gameManager.data.battlegrounds.get(1).isDefeated()) {
-                    gameManager.data.battlegrounds.get(2).setLocked(false);
-                    gameManager.data.battlegrounds.get(3).setLocked(false);
-                    return true;
-                } else return false;
-            case 4:
-                if(gameManager.data.battlegrounds.get(3).isDefeated()) {
-                    gameManager.data.battlegrounds.get(4).setLocked(false);
-                    gameManager.data.battlegrounds.get(5).setLocked(false);
-                }
-        }
-        return false;
+        if (gameManager.data.battlegrounds.get(battlegroundId - 1).isDefeated()) {
+            gameManager.data.battlegrounds.get(battlegroundId).setLocked(false);
+            gameManager.data.battlegrounds.get(battlegroundId + 1).setLocked(false);
+            return true;
+        } else return false;
     }
 }
