@@ -21,9 +21,9 @@ public class MainFrame extends JFrame {
         Color darkBackground = new Color(30, 30, 30);
         setTitle("Rookie Revenge");
 
-        setSize(325, 700);
+        setSize(400, 800);
         setResizable(false);
-        Dimension fixedSize = new Dimension(325, 600);
+        Dimension fixedSize = new Dimension(400, 800);
         setPreferredSize(fixedSize);
         setMinimumSize(fixedSize);
         setMaximumSize(fixedSize);
@@ -34,7 +34,7 @@ public class MainFrame extends JFrame {
         display.setEditable(false);
         display.setBackground(Color.BLACK);
         display.setForeground(Color.GREEN);
-        display.setFont(new Font("Monospaced", Font.BOLD, 14));
+        display.setFont(new Font("Monospaced", Font.BOLD, 16));
         display.setMargin(new Insets(10, 10, 10, 10));
 
         scrollPane = new JScrollPane(display);
