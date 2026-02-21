@@ -83,34 +83,28 @@ public class BattleHandler {
         }
     }
 
-    /**
-     * Processes a full combat turn.
-     * This method calculates the enemy's move, determines turn order based on speed,
-     * applies damage/effects, and animates the results step-by-step using a Timer.
-     * * @param playerMove The move selected by the player from the game.
-     */
     public void processing(Move playerMove) {
-        // 1. Enemy AI Decision: Randomly select a move from the enemy's move set
-        Move enemyMove = enemy.getMoves().get((int) (Math.random() * enemy.getMoves().size()));
-
-        // 2. St ate Management: Prevent further input while the animation is running
         gameManager.isProcessing = true;
 
-        // 3. Initiative Check: Compare speed stats to see who acts first
-        // If speeds are equal, the player currently gets the advantage
-        boolean player_first = (enemy.getSpeed() <= rookie.getSpeed());
+        /* Enemy Move, 50% Attack, 25% Powerup, 25% Weaken */
+        double chance = Math.random();
+        Move enemyMove;
+        if (chance < 0.50) {
+            enemyMove = enemy.getMoves().get(0);
+        } else if (chance < 0.75) {
+            enemyMove = enemy.getMoves().get(1);
+        } else {
+            enemyMove = enemy.getMoves().get(2);
+        }
 
-        // Tell user battle is processing
+        boolean player_first = (enemy.getSpeed() <= rookie.getSpeed());
         display.setText(getProcessingString(rookie, enemy));
 
-        // 4. Animation Sequence: Execute battle events in a timed sequence
-        // A delay of 1200ms provides a good pace for reading the text
         Timer timer = new Timer(1200, new ActionListener() {
             int count = 0;
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Identify active players for the current phase (Turn 1: 0-2, Turn 2: 3-5)
                 boolean isFirstTurn = (count < 3);
                 Move currentMove = isFirstTurn
                         ? (player_first ? playerMove : enemyMove)
@@ -215,11 +209,6 @@ public class BattleHandler {
         timer.start();
     }
 
-    /**
-     * Resolves the logic for different move types.
-     * Calculates damage for AttackMoves using the A/D ratio and handles
-     * stat modifications for EffectMoves.
-     */
     private void handleMoveEffect(Move move, Rookie user, Rookie target) {
         if (move instanceof AttackMove) {
             int power = ((AttackMove) move).getBaseDamage();
