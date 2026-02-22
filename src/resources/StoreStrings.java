@@ -37,6 +37,30 @@ public class StoreStrings {
                 " 35. DUNKED, 6000g          [A: -50%]\n" +
                 "+------------------------------------+";
     }
+
+    public static String getStoreString(Player player) {
+        return "+------------------------------------+\n" +
+                "+                STORE              +\n" +
+                "+             SANDWICH BAR          +\n" +
+                "+------------------------------------+\n" +
+                "   Purchasing a sandwich will add +1 \n" +
+                "        to respective category \n" +
+                "   (Health, Attack, Defense, Speed) \n" +
+                "      Gluten bread is available!\n" +
+                "              GOLD: " + player.getGold() + "\n" +
+                "\n" +
+                " 1. TVISTE (Goat Cheese, Pine Nuts)\n" +
+                " Price: 2500g              [H+1]\n" +
+                " 2. KANDIDAT (Ham, Cheese, Pineapple)\n" +
+                " Price: 3000g              [D+1]\n" +
+                " 3. FYSIK (Salami, Brie Cheese)\n" +
+                " Price: 3500g              [S+1]\n" +
+                " 4. MAGISTER (Chicken, Bacon, Cheese)\n" +
+                " Price: 4000g              [A+1]\n" +
+                " 5. RETURN\n" +
+                "+------------------------------------+\n";
+    }
+
     public static String[] getIntroTexts() {
         return new String[] {
                 "Welcome to the world of Rookies!",

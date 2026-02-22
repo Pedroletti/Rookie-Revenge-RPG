@@ -95,6 +95,11 @@ public class Rookie implements Serializable {
 
     public int getLevel() { return level; }
 
+    public void setHealth(int health) {
+        this.health = health;
+        this.currentHealth = health;
+    }
+
     public void setAttack(int attack) { this.attack = attack; }
 
     public int getAttack() { return attack; }

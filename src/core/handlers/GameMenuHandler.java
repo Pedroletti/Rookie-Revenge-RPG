@@ -44,7 +44,7 @@ public class GameMenuHandler {
     private void handleOverworldSelection(String choice) {
         switch (choice) {
             case "1":
-                display.setText(getOverworldString());
+                display.setText(getOverworldString(gameManager));
                 gameManager.gameState = GameManager.GameState.OVERWORLD;
                 gameState = GameState.MENU;
                 break;

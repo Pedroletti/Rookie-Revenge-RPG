@@ -33,9 +33,9 @@ public class PhaseThree {
                 "\n";
     }
     public static String getBlackJackArt() {
-        return  " xxxxxxxxx\n" +
-                "  X| (€)(€)    ....... .......\n" +
-                "  @        >   |A    | |K    |\n" +
+        return  " xxxxxxxxx    ....... .......\n" +
+                "  X| (€)(€)    |A    | |K    |\n" +
+                "  @        >   |     | |     |\n" +
                 "   |     -|    |     | |     |\n" +
                 "    \\    /     |    A| |    K|\n" +
                 "  ___|  |___   ´´´´´´´ ´´´´´´´\n" +

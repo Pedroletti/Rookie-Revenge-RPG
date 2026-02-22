@@ -95,7 +95,7 @@ public class MainMenuHandler {
                 subState = SubState.INTRO_STORY_1;
                 gameManager.deleteGame();
                 gameManager.data.buildWorld();
-                playStory(getIntroTexts());
+                gameManager.loadScene("A new game has been created.");
                 break;
             case "3":
                 menuState = MenuState.MAIN_MENU;
@@ -151,7 +151,7 @@ public class MainMenuHandler {
             case "4":
                 Rookie otto = new Rookie("Otto");
                 otto.addMove(gameManager.data.moveCatalog.get("PUNCH"));
-                otto.addMove(gameManager.data.moveCatalog.get("EYBRO"));
+                otto.addMove(gameManager.data.moveCatalog.get("LUCKY BAIT"));
                 otto.addMove(gameManager.data.moveCatalog.get("TAUNT"));
                 otto.levelUp(4);
                 otto.setArt(getOttoArt());

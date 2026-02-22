@@ -11,8 +11,7 @@ import javax.swing.*;
 import static java.lang.Integer.parseInt;
 import static resources.GameMenuStrings.getGameMenuString;
 import static resources.GameMenuStrings.getErrorText;
-import static resources.StoreStrings.getIntroTexts;
-import static resources.StoreStrings.getTrainingString;
+import static resources.StoreStrings.*;
 
 public class OverworldHandler {
     private final JTextArea display;
@@ -63,12 +62,13 @@ public class OverworldHandler {
                 }
             }
         }
-        if (battleground.isDefeated()) {
+        if (battleground.isDefeated() && battleground.isGym()) {
             if (battleground.isTraining()) {
                 gameManager.gameState = GameManager.GameState.TRAINING;
                 gameManager.loadScene(getTrainingString(player));
             } else if (battleground.isStore()) {
                 gameManager.gameState = GameManager.GameState.STORE;
+                gameManager.loadScene(getStoreString(player));
             } else display.append("\n Gym is defeated!");
             return;
         }
@@ -84,7 +84,6 @@ public class OverworldHandler {
     private boolean unlockBattleground(int battlegroundId) {
         if (gameManager.data.battlegrounds.get(battlegroundId - 1).isDefeated()) {
             gameManager.data.battlegrounds.get(battlegroundId).setLocked(false);
-            gameManager.data.battlegrounds.get(battlegroundId + 1).setLocked(false);
             return true;
         } else return false;
     }

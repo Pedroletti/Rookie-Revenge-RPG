@@ -2,6 +2,7 @@ package core.handlers;
 
 import core.GameManager;
 import model.Player;
+import model.Rookie;
 import model.moves.Move;
 import utils.StringReader;
 
@@ -57,7 +58,7 @@ public class StoreHandler {
 
                 break;
             case "2":
-                gameManager.loadScene(getOverworldString());
+                gameManager.loadScene(getOverworldString(gameManager));
                 gameManager.gameState = GameManager.GameState.OVERWORLD;
                 break;
             /* ATTACK */
@@ -115,7 +116,54 @@ public class StoreHandler {
         }
     }
 
-    private void handleStoreSelection(String choice) {
+    public void handleStoreSelection(String choice) {
+        if(state == StoreState.CONFIRM) {
+            if(move == null || moveType == -1) { // failsafe
+                state = StoreState.SHOPPING;
+                System.out.println("Bought move NULL");
+                display.setText(getStoreString(player));
+                return;
+            }
+            handleConfirm(choice);
+        }
+        Rookie rookie = gameManager.player.getRookie();
+        switch (choice) {
+            case "1":
+                if(checkGold(2500, gameManager.player.getGold())) {
+                    rookie.setHealth(rookie.getHp()+1);
+                    display.setText(getStoreString(gameManager.player));
+                    display.append(" Health: " + (rookie.getHp() - 1) + " --> " + rookie.getHp() + "\n");
+                }
+                break;
+            case "2":
+                if(checkGold(3000, gameManager.player.getGold())) {
+                    rookie.setDefense(rookie.getDefense()+1);
+                    display.setText(getStoreString(gameManager.player));
+                    display.append(" Defense: " + (rookie.getDefense() - 1) + " --> " + rookie.getDefense() + "\n");
+                }
+                break;
+            case "3":
+                if(checkGold(3500, gameManager.player.getGold())) {
+                    rookie.setSpeed(rookie.getSpeed()+1);
+                    display.setText(getStoreString(gameManager.player));
+                    display.append(" Speed: " + (rookie.getSpeed() - 1) + " --> " + rookie.getSpeed() + "\n");
+                }
+                break;
+            case "4":
+                if(checkGold(4000, gameManager.player.getGold())) {
+                    rookie.setAttack(rookie.getAttack()+1);
+                    display.setText(getStoreString(gameManager.player));
+                    display.append(" Attack: " + (rookie.getAttack()-1) + " --> " + rookie.getAttack() + "\n");
+                }
+                break;
+            case "5":
+                gameManager.loadScene(getOverworldString(gameManager));
+                gameManager.gameState = GameManager.GameState.OVERWORLD;
+                break;
+            default:
+                display.append(getErrorText());
+                break;
+        }
     }
 
     private void handleConfirm(String choice) {
@@ -166,5 +214,16 @@ public class StoreHandler {
         state = StoreState.SHOPPING;
         gameManager.loadScene(getTrainingString(player));
     }
+
+    private boolean checkGold(int price, int balance) {
+        if(price <= balance) {
+            gameManager.player.setGold(balance-price);
+            return true;
+        } else {
+            display.append("\n You don't have enough Gold.");
+            return false;
+        }
+    }
+
 }
 

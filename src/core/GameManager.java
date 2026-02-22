@@ -40,10 +40,10 @@ public class GameManager {
         saveManager = new SaveManager();
         this.display = display;
         gameState = GameState.MAIN_MENU;
-        menuHandler = new MainMenuHandler(this, sr, display);
         isProcessing = false;
         data = new GameData();
         display.setText(getMenuString());
+        menuHandler = new MainMenuHandler(this, sr, display);
         storeHandler = new StoreHandler(this, player, sr, display);
     }
 
@@ -76,6 +76,8 @@ public class GameManager {
             case STORY:
                 playStory();
                 break;
+            case STORE:
+                storeHandler.handleStoreSelection(choice);
         }
     }
 

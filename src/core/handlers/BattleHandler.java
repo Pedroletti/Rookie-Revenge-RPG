@@ -64,6 +64,7 @@ public class BattleHandler {
             player.getRookie().addExperience(enemy.getGiveExperience(), display);
             player.addGold(enemy.getGold());
             if(gameManager.battleground.isGym()) gameManager.battleground.registerGymVictory();
+            else gameManager.battleground.registerExploration();
         }
         gameManager.updatePlayer(player);
         display.append("\n > Press enter to continue.\n");

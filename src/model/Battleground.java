@@ -27,6 +27,8 @@ public class Battleground implements Serializable {
         if(gym) defeated = false;
     }
 
+
+
     public Rookie getRandomOpponent() {
         int index = random.nextInt(enemies.size());
         Rookie enemy = enemies.get(index);
@@ -43,6 +45,14 @@ public class Battleground implements Serializable {
         if (currentIndex >= enemies.size()) {
             defeated = true;
         }
+    }
+
+    public void registerExploration() {
+        defeated = true;
+    }
+
+    public void setDefeated() {
+        defeated = true;
     }
 
     public void setLocked(boolean locked) {

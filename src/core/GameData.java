@@ -47,6 +47,9 @@ public class GameData implements Serializable {
             initSkötet();
             initTviste();
             initRouge();
+            initICA();
+            initStipendiegränd();
+            initTheEastPavilion();
 
             System.out.println("World is built.");
         }).start();
@@ -65,7 +68,7 @@ public class GameData implements Serializable {
         moveCatalog.put("GOD KICK", new AttackMove("GOD KICK", 200));
 
         /* STARTER */
-        moveCatalog.put("PUNCH", new AttackMove("PUNCH", 40));
+        moveCatalog.put("PUNCH", new AttackMove("PUNCH", 45));
         moveCatalog.put("LUCKY BAIT", new EffectMove("LUCKY BAIT", Move.MoveType.POWERUP, Move.TargetStat.ATTACK, 1.2));
         moveCatalog.put("TROPIC THUNDER", new EffectMove("TROPIC THUNDER", Move.MoveType.POWERUP, Move.TargetStat.SPEED, 1.2));
         moveCatalog.put("ARTON56", new EffectMove("ARTON56", Move.MoveType.POWERUP, Move.TargetStat.ATTACK, 1.25));
@@ -107,7 +110,7 @@ public class GameData implements Serializable {
         moveCatalog.put("COFFEE", new EffectMove("COFFEE", Move.MoveType.POWERUP, Move.TargetStat.SPEED, 1.2));
         moveCatalog.put("BAD FEEDBACK", new AttackMove("BAD FEEDBACK", 45));
         moveCatalog.put("DENIED ENTRY", new AttackMove("DENIED ENTRY", 50));
-        moveCatalog.put("DISCOURAGEMENT", new EffectMove("DISCOURAGEMENT", Move.MoveType.WEAKEN, Move.TargetStat.DEFENSE, 0.8));
+        moveCatalog.put("ENCOURAGEMENT", new EffectMove("ENCOURAGEMENT", Move.MoveType.WEAKEN, Move.TargetStat.DEFENSE, 1.2));
 
         /* NATURVETARHUSET */
         moveCatalog.put("VECTOR THRUST", new AttackMove("VECTOR THRUST", 50));
@@ -148,8 +151,42 @@ public class GameData implements Serializable {
         moveCatalog.put("PARTY IN HOLMA", new EffectMove("PARTY IN HOLMA", Move.MoveType.WEAKEN, Move.TargetStat.ATTACK, 0.75));
 
         moveCatalog.put("EXPENSIVE BEER", new AttackMove("EXPENSIVE BEER", 65));
-        moveCatalog.put("SABOTAGE ORIGO", new EffectMove("SABOTAGE ORIGO", Move.MoveType.POWERUP, Move.TargetStat.SPEED, 1.3));
+        moveCatalog.put("BRIBE", new EffectMove("BRIBE", Move.MoveType.POWERUP, Move.TargetStat.SPEED, 1.3));
         moveCatalog.put("MANIPULATE", new EffectMove("MANIPULATE", Move.MoveType.WEAKEN, Move.TargetStat.SPEED, 0.7));
+
+        /* STIPENDIEGRÄND */
+        moveCatalog.put("GOGO GAGA", new AttackMove("GOGO GAGA", 60));
+        moveCatalog.put("TITTY TOUCH", new EffectMove("TITTY TOUCH", Move.MoveType.POWERUP, Move.TargetStat.ATTACK, 1.25));
+        moveCatalog.put("CRY", new EffectMove("CRY", Move.MoveType.WEAKEN, Move.TargetStat.DEFENSE, 0.75));
+
+        moveCatalog.put("SPIT", new AttackMove("SPIT", 60));
+        moveCatalog.put("ROBUX SHOWER", new EffectMove("ROBUX SHOWER", Move.MoveType.POWERUP, Move.TargetStat.DEFENSE, 1.25));
+        moveCatalog.put("SPOILED BRAT", new EffectMove("SPOILED BRAT", Move.MoveType.WEAKEN, Move.TargetStat.SPEED, 0.75));
+
+        moveCatalog.put("zzZzzZz..", new EffectMove("zzZzzZz..", Move.MoveType.POWERUP, Move.TargetStat.ATTACK, 0.9));
+
+        moveCatalog.put("TURING ATTACK", new AttackMove("TURING ATTACK", 60));
+        moveCatalog.put("SPEEDRUN", new AttackMove("SPEEDRUN", 60));
+        moveCatalog.put("DV-ASSEMBLE", new EffectMove("DV-ASSEMBLE", Move.MoveType.POWERUP, Move.TargetStat.ATTACK, 1.25));
+
+        /* THE EAST PAVILION */
+        moveCatalog.put("INDUCTION", new AttackMove("INDUCTION", 60));
+        moveCatalog.put("TRUTH TABLE", new EffectMove("TRUTH TABLE", Move.MoveType.POWERUP, Move.TargetStat.DEFENSE, 1.3));
+        moveCatalog.put("DISCONNECTION", new EffectMove("DISCONNECTION", Move.MoveType.WEAKEN, Move.TargetStat.ATTACK, 1.3));
+
+        moveCatalog.put("SEGMENTATION FAULT", new AttackMove("SEGMENTATION FAULT", 65));
+        moveCatalog.put("MALLOC", new EffectMove("MALLOC", Move.MoveType.POWERUP, Move.TargetStat.DEFENSE, 1.3));
+        moveCatalog.put("MEMORY LEAK", new EffectMove("MEMORY LEAK", Move.MoveType.WEAKEN, Move.TargetStat.DEFENSE, 1.3));
+
+        moveCatalog.put("SWING", new AttackMove("SWING", 65));
+        moveCatalog.put("MVC", new EffectMove("MVC", Move.MoveType.POWERUP, Move.TargetStat.ATTACK, 1.3));
+        moveCatalog.put("NULL-POINTER-EXCEPTION", new EffectMove("NULL-POINTER", Move.MoveType.POWERUP, Move.TargetStat.ATTACK, 1.3));
+
+        moveCatalog.put("DERIVATION", new AttackMove("DERIVATION", 65));
+        moveCatalog.put("EXPONENTIAL GROWTH", new EffectMove("EXPONENTIAL GROWTH", Move.MoveType.POWERUP, Move.TargetStat.SPEED, 1.3));
+        moveCatalog.put("LIMIT TOWARDS ZERO", new EffectMove("LIMIT TOWARDS ZERO", Move.MoveType.WEAKEN, Move.TargetStat.SPEED, 1.3));
+
+
     }
 
     private void initMITPlace() {
@@ -169,15 +206,15 @@ public class GameData implements Serializable {
         Rookie r5 = createEnemy("Female Worker", getFemaleMITArt(), "THROW KEBAB", "COFFEE", "NTK MEMBER?", 7);
 
         List<Rookie> rookies = List.of(r1, r2, r3, r4, r5);
-        battlegrounds.add(new Battleground("MIT-CAFE", rookies, false, false));
+        battlegrounds.add(new Battleground("MIT-CAFE", rookies, true, false));
     }
 
     private void initDataGym() {
         Rookie r1 = createEnemy("Tutor", getTutorArt(), "BAD FEEDBACK", "WHITE MONSTER", "MEAN WORDS", 11);
-        Rookie r2 = createEnemy("Study Counselor", getCounselorArt(), "BAD FEEDBACK", "COFFEE", "DISCOURAGEMENT", 12);
+        Rookie r2 = createEnemy("Study Counselor", getCounselorArt(), "BAD FEEDBACK", "COFFEE", "ENCOURAGEMENT", 12);
         Rookie r3 = createEnemy("Principal", getPrincipalArt(), "DENIED ENTRY", "COFFEE", "MEAN WORDS", 13);
         List<Rookie> rookies = List.of(r1, r2, r3);
-        battlegrounds.add(new Battleground("Data Gym", rookies, false, true));
+        battlegrounds.add(new Battleground("Data Gym", rookies, true, true));
     }
 
     private void initNaturvetarhuset() {
@@ -224,11 +261,42 @@ public class GameData implements Serializable {
 
     private void initRouge() {
         Rookie r1 = createEnemy("Entrance Guard", getDefaultArt(), "BATON HIT", "FLEX MUSCLE", "DRUNK SUSPICION", 23);
-        Rookie r2 = createEnemy("BlackJack Worker", getBlackJackArt(), "DEAL BAD CARDS", "DEALER BLACKJACK", "BUY-IN", 23);
+        Rookie r2 = createEnemy("BlackJack Dealer", getBlackJackArt(), "DEAL BAD CARDS", "HOUSE BLACKJACK", "BUY-IN", 23);
         Rookie r3 = createEnemy("Homer President", getHomerArt(), "PENIS SWING", "ASS-BEER", "PARTY IN HOLMA", 24);
-        Rookie r4 = createEnemy("Saba", getDefaultArt(), "EXPENSIVE BEER", "SABOTAGE ORIGO", "MANIPULATE", 26);
+        Rookie r4 = createEnemy("Saba", getDefaultArt(), "EXPENSIVE BEER", "BRIBE", "MANIPULATE", 26);
         List<Rookie> rookies = List.of(r1, r2, r3, r4);
         battlegrounds.add(new Battleground("Rouge", rookies, true, true));
+    }
+
+    private void initICA() {
+        Rookie r1 = createEnemy("ICA Cashier", getDefaultArt(), "BATON HIT", "FLEX MUSCLE", "DRUNK SUSPICION", 1);
+        List<Rookie> rookies = List.of(r1);
+        Battleground bg = new Battleground("Skötet", rookies, true, true);
+        bg.setDefeated();
+        bg.setStore(true);
+        battlegrounds.add(bg);
+    }
+
+    private void initStipendiegränd() {
+        Rookie r1 = createEnemy("Screaming Infant", getDefaultArt(), "GOGO GAGA", "TITTY TOUCH", "CRY", 24);
+        Rookie r2 = createEnemy("Screaming Infant", getDefaultArt(), "GOGO GAGA", "TITTY TOUCH", "CRY", 25);
+        Rookie r3 = createEnemy("Playing Child", getDefaultArt(), "SPIT", "ROBUX SHOWER", "SPOILED BRAT", 24);
+        Rookie r4 = createEnemy("Playing Child", getDefaultArt(), "SPIT", "ROBUX SHOWER", "SPOILED BRAT", 25);
+        Rookie r5 = createEnemy("Playing Child", getDefaultArt(), "SPIT", "ROBUX SHOWER", "SPOILED BRAT", 26);
+        Rookie r6 = createEnemy("Passed-out Student", getDefaultArt(), "zzZzzZz..", "zzZzzZz..", "zzZzzZz..", 25);
+        Rookie r7 = createEnemy("Julia", getFemaleMITArt(), "TURING ATTACK", "DV-ASSEMBLE", "MEAN WORDS", 28);
+        Rookie r8 = createEnemy("Maximilian", getFemaleMITArt(), "SPEEDRUN", "EYBRO", "TAUNT", 28);
+        List<Rookie> rookies = List.of(r1, r2, r3, r4, r5, r6, r7, r8);
+        battlegrounds.add(new Battleground("Stipendiegränd", rookies, true, false));
+    }
+
+    private void initTheEastPavilion() {
+        Rookie r1 = createEnemy("Discrete Math Exam", getDefaultArt(), "INDUCTION", "TRUTH TABLE", "DISCONNECTION", 28);
+        Rookie r2 = createEnemy("C-Prog Exam", getDefaultArt(), "SEGMENTATION FAULT", "MALLOC", "MEMORY LEAK", 29);
+        Rookie r3 = createEnemy("Java Exam", getDefaultArt(), "SWING", "MVC", "NULL-POINTER", 30);
+        Rookie r4 = createEnemy("Calculus Exam", getDefaultArt(), "DERIVATION", "EXPONENTIAL GROWTH", "LIMIT TOWARDS ZERO", 32);
+        List<Rookie> rookies = List.of(r1, r2, r3, r4);
+        battlegrounds.add(new Battleground("The East Pavilion", rookies, true, true));
     }
 
     private Rookie createEnemy(String name, String art, String attackMove, String powerupMove, String weakenMove, int level) {
