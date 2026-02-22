@@ -1,9 +1,7 @@
 # Rookie Revenge
 Rookie Revenge RPG is a completely string-based, turn-based RPG game made in Java. Set in an environment based on locations from [Umeå, Sweden], the game allows players to recruit and level up unique characters known as 'Rookies'. Explore various battlegrounds, engage in strategic battles to gain rewards and defeat the evil entities called "Pirayas".
 
-<img src="assets/stats.png" width="300"> 
-<img src="assets/battleground.png" width="300">
-<img src="assets/overworld.png" width="300">
+<img src="assets/stats.png" width="300"><img src="assets/battleground.png" width="300"><img src="assets/overworld.png" width="300">
 
 ## Features
 * **Turn Based Combat:** A logic-driven battle system featuring standard attacks, stat modifiers (Powerup/Weaken), dodging and critical hits.
@@ -12,8 +10,9 @@ Rookie Revenge RPG is a completely string-based, turn-based RPG game made in Jav
 * **Save & Load System:** Features built-in persistence to save and resume game progress via serialized data handling.
 
 ## Patch Notes
-* **V0.3-alpha** 2 new battlegrounds, 1 new gym, 9 new unique enemies, enemy battle move selection updated, shop prices updated.
-* **V0.2-alpha:** 2 new battlegrounds, 4 new unique enemies, health upgrade with balanced combat, shop added to game.
+* **V0.4-alpha:** 2 new battlegrounds, 1 new gym, 9 new unique enemies, shop added to the game.
+* **V0.3-alpha:** 2 new battlegrounds, 1 new gym, 9 new unique enemies, enemy battle move selection updated, training prices updated.
+* **V0.2-alpha:** 2 new battlegrounds, 4 new unique enemies, health upgrade with balanced combat, training added to game.
 * **V0.1-alpha:** First playable version. 2 playable battlegrounds, 4 unique characters, 5 unique enemies, 15 different moves.
 
 
