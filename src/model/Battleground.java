@@ -11,17 +11,19 @@ public class Battleground implements Serializable {
     private Random random;
     private boolean locked;
     private boolean gym;
+    private boolean league;
     private boolean defeated;
     private int currentIndex = 0;
     private boolean store;
     private boolean training;
 
-    public Battleground(String name, List<Rookie> enemies, boolean locked, boolean gym) {
+    public Battleground(String name, List<Rookie> enemies, boolean locked, boolean gym, boolean league) {
         this.name = name;
         this.enemies = enemies;
         this.random = new Random();
         this.locked = locked;
         this.gym = gym;
+        this.league = league;
         this.store = false;
         this.training = false;
         if(gym) defeated = false;
@@ -79,8 +81,11 @@ public class Battleground implements Serializable {
         return training;
     }
 
-
     public boolean isGym() { return gym; }
+
+    public boolean isLeague() { return league; }
+
+    public void resetIndex() { currentIndex = 0; }
 
     public boolean isDefeated() { return defeated; }
 }

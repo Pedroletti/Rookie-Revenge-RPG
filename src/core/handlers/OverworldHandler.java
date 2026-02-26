@@ -34,7 +34,7 @@ public class OverworldHandler {
 
     public void handleSelection(String choice) {
         switch (choice) {
-            case "14":
+            case "13":
                 gameManager.gameState = GameManager.GameState.GAME_MENU;
                 display.setText(getGameMenuString());
                 break;
@@ -47,7 +47,7 @@ public class OverworldHandler {
         this.player = player;
     }
 
-    private void handleBattle(int battlegroundId) {
+    public void handleBattle(int battlegroundId) {
         battlegroundId -= 1;
         if(battlegroundId < 0 || battlegroundId > gameManager.data.battlegrounds.size()-1) {
             display.append(getErrorText());

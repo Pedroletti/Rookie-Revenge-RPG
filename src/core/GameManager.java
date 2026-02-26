@@ -23,7 +23,7 @@ public class GameManager {
     private StringReader sr;
     private MainMenuHandler menuHandler;
     public GameMenuHandler gameHandler;
-    private OverworldHandler overviewHandler;
+    public OverworldHandler overviewHandler;
     public BattleHandler battleHandler;
     public StoreHandler storeHandler;
     public boolean isProcessing;

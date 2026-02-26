@@ -22,6 +22,16 @@ public class PhaseThree {
                 " /          \\\n" +
                 "\n";
     }
+    public static String getArchitectArt() {
+        return   "  @@@@@@@@\n" +
+                "   |-|_||_|\n" +
+                "  @        >\n" +
+                "   |     -|\n" +
+                "    \\    /\n" +
+                "  ___|  |___\n" +
+                " /          \\\n" +
+                "\n";
+    }
     public static String getDefaultArt() {
         return  "  ////\\\\\\\\\n" +
                 "   | (O)(O)\n" +
@@ -29,6 +39,26 @@ public class PhaseThree {
                 "   |     -|\n" +
                 "    \\    /\n" +
                 "  ___|  |___\n" +
+                " /          \\\n" +
+                "\n";
+    }
+    public static String getMedicalArt() {
+        return   " XXXXXXXXX\n" +
+                " XX| (o)(o)\n" +
+                " X@ \\_____|\n" +
+                " XX| \\____|\n" +
+                " XX \\    /\n" +
+                " X___|  |___\n" +
+                " /          \\\n" +
+                "\n";
+    }
+    public static String getPotatoArt() {
+        return   "  .vvvvvvv\n" +
+                "   | (p)(p)\n" +
+                "  @        >\n" +
+                "   (    --)\n" +
+                "    \\    /\n" +
+                "  ___(  )___\n" +
                 " /          \\\n" +
                 "\n";
     }
@@ -51,6 +81,16 @@ public class PhaseThree {
                 "  | |.___|    \n" +
                 "  |  \\__/     \n" +
                 "  /_____\\   " +
+                "\n";
+    }
+    public static String getSabaArt() {
+        return  "   @@@@@@@@\n" +
+                "  @| ($)($)\n" +
+                "  C        >\n" +
+                "   |     -|\n" +
+                "    \\    /\n" +
+                "  ___|  |___\n" +
+                " /          \\\n" +
                 "\n";
     }
 }

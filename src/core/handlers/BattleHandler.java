@@ -23,6 +23,7 @@ public class BattleHandler {
     private Rookie rookie, enemy;
     private boolean win;
     private boolean exit;
+    private boolean next;
 
 
     public BattleHandler(GameManager gameManager, Player player, Rookie enemy, StringReader sr, JTextArea display) {
@@ -34,11 +35,16 @@ public class BattleHandler {
         rookie = new Rookie(player.getRookie());
         win = false;
         exit = false;
+        next = false;
     }
 
     public void handleSelection(String choice) {
         if(exit) {
             exitGame(choice);
+            return;
+        }
+        if(next) {
+            nextGame(choice);
             return;
         }
         switch (choice) {
@@ -60,15 +66,40 @@ public class BattleHandler {
     }
 
     public void endGame() {
-        if(win) {
-            player.getRookie().addExperience(enemy.getGiveExperience(), display);
-            player.addGold(enemy.getGold());
-            if(gameManager.battleground.isGym()) gameManager.battleground.registerGymVictory();
-            else gameManager.battleground.registerExploration();
+        if (!win) {
+            handleLoss();
+        } else {
+            handleWin();
         }
         gameManager.updatePlayer(player);
-        display.append("\n > Press enter to continue.\n");
-        exit = true;
+        updateEndGameDisplay();
+    }
+
+    private void handleWin() {
+        player.getRookie().addExperience(enemy.getGiveExperience(), display);
+        player.addGold(enemy.getGold());
+
+        if (gameManager.battleground.isGym()) {
+            gameManager.battleground.registerGymVictory();
+        } else {
+            gameManager.battleground.registerExploration();
+        }
+    }
+
+    private void handleLoss() {
+        if (gameManager.battleground.isLeague()) {
+            gameManager.battleground.resetIndex();
+        }
+    }
+
+    private void updateEndGameDisplay() {
+        if (win && gameManager.battleground.isLeague()) {
+            display.append("\n > Press enter for next battle.\n");
+            next = true;
+        } else {
+            display.append("\n > Press enter to continue.\n");
+            exit = true;
+        }
     }
 
     public void exitGame(String choice) {
@@ -77,6 +108,18 @@ public class BattleHandler {
                 gameManager.loadScene(getGameMenuString());
                 gameManager.gameState = GameManager.GameState.GAME_MENU;
                 gameManager.battleHandler = null;
+                break;
+            default:
+                display.append(getErrorText());
+                break;
+        }
+    }
+
+    public void nextGame(String choice) {
+        switch (choice) {
+            case "0":
+                gameManager.battleHandler = null;
+                gameManager.overviewHandler.handleBattle(12);
                 break;
             default:
                 display.append(getErrorText());
