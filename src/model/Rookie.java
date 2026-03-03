@@ -24,6 +24,7 @@ public class Rookie implements Serializable {
     private String asciiArt;
     private int mainStat;
     private String[] message;
+    private boolean hasMsg;
 
 
     public Rookie(String name) {
@@ -33,6 +34,7 @@ public class Rookie implements Serializable {
         this.mainStat = rand.nextInt(4);
         this.message = null;
         getRandomStats();
+        hasMsg = false;
     }
 
     public Rookie(Rookie other) {
@@ -192,7 +194,12 @@ public class Rookie implements Serializable {
 
     public void setMessage(String[] message) {
         this.message = message;
+        this.hasMsg = true;
     }
+
+    public boolean hasMessage() { return hasMsg; }
+
+    public void toggleMessage() { this.hasMsg = !this.hasMsg; }
 
     public String[] getMessage() {
         return this.message;

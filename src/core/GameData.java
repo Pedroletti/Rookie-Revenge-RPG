@@ -175,7 +175,7 @@ public class GameData implements Serializable {
         addEffectMove("MEMORY LEAK", Move.MoveType.WEAKEN, Move.TargetStat.DEFENSE, 0.7);
         addAttackMove("SWING", 65);
         addEffectMove("MVC", Move.MoveType.POWERUP, Move.TargetStat.ATTACK, 1.3);
-        addEffectMove("NULL-POINTER-EXCEPTION", Move.MoveType.WEAKEN, Move.TargetStat.ATTACK, 0.7);
+        addEffectMove("NULL-POINTER", Move.MoveType.WEAKEN, Move.TargetStat.ATTACK, 0.7);
         addAttackMove("DERIVATION", 65);
         addEffectMove("EXPONENTIAL GROWTH", Move.MoveType.POWERUP, Move.TargetStat.SPEED, 1.3);
         addEffectMove("LIMIT TOWARDS ZERO", Move.MoveType.WEAKEN, Move.TargetStat.SPEED, 0.7);
@@ -197,7 +197,7 @@ public class GameData implements Serializable {
         addAttackMove("RUNESCAPE", 70);
         addAttackMove("BULLY-DL", 70);
         addAttackMove("TACTICAL PUKE", 70);
-        addAttackMove("BING COLLECTIVE", 75);
+        addAttackMove("BING COLLECT", 75);
         addAttackMove("VOMIT", 80);
         addAttackMove("ULTRA-VOMIT", 90);
 
@@ -275,9 +275,9 @@ public class GameData implements Serializable {
     }
 
     private void initTviste() {
-        Rookie r1 = createEnemy("Economy Elite", getMaleTvisteArt(), "DEPT TRAP", "FATHERS CREDITCARD", "NET WORTH JUDGEMENT", 15);
-        Rookie r2 = createEnemy("Economy Elite", getMaleTvisteArt(), "DEPT TRAP", "FATHERS CREDITCARD", "NET WORTH JUDGEMENT", 16);
-        Rookie r4 = createEnemy("Economy Elite", getFemaleTvisteArt(), "DEPT TRAP", "FATHERS CREDITCARD", "NET WORTH JUDGEMENT", 17);
+        Rookie r1 = createEnemy("Economy Elite", getMaleTvisteArt(), "DEPT TRAP", "FATHERS CREDITCARD", "NET WORTH JUDGE", 15);
+        Rookie r2 = createEnemy("Economy Elite", getMaleTvisteArt(), "DEPT TRAP", "FATHERS CREDITCARD", "NET WORTH JUDGE", 16);
+        Rookie r4 = createEnemy("Economy Elite", getFemaleTvisteArt(), "DEPT TRAP", "FATHERS CREDITCARD", "NET WORTH JUDGE", 17);
 
         Rookie r5 = createEnemy("Fire Potato Guy", getPotatoArt(), "CARB OVERLOAD", "DOUBLE SKAGEN", "FORCE EAT", 18);
         Rookie r6 = createEnemy("Banger Potato Guy", getPotatoArt(), "CARB OVERLOAD", "DOUBLE SKAGEN", "FORCED POTATO", 19);
@@ -307,7 +307,7 @@ public class GameData implements Serializable {
     private void initICA() {
         Rookie r1 = createEnemy("ICA Cashier", getDefaultArt(), "BATON HIT", "FLEX MUSCLE", "DRUNK SUSPICION", 1);
         List<Rookie> rookies = List.of(r1);
-        Battleground bg = new Battleground("Skötet", rookies, true, true, false);
+        Battleground bg = new Battleground("ICA", rookies, true, true, false);
         bg.setDefeated();
         bg.setStore(true);
         battlegrounds.add(bg);
@@ -348,7 +348,7 @@ public class GameData implements Serializable {
 
     private void initOrigo() {
         Rookie r1 = createEnemy("Nilf", getDefaultArt(), "LOSE YOUR PANTS", "BREZNAK", "ROOKIESKÅL", 30);
-        Rookie r2 = createEnemy("J-Breezy", getDefaultArt(), "BOTTLE SLAM", "STEEZY BREEZY", "ROOKIESKÅL", 31);
+        Rookie r2 = createEnemy("J-Breezy", getDefaultArt(), "BOTTLE-SLAM", "STEEZY BREEZY", "ROOKIESKÅL", 31);
         Rookie r3 = createEnemy("VB", getDefaultArt(), "CATHETER CONSTRICTION", "DUNK-CHAMPION", "ROOKIESKÅL", 32);
         Rookie r4 = createEnemy("Trasan", getDefaultArt(), "BROKEN SPELL", "BLACKOUT", "ROOKIESKÅL", 33);
         Rookie r5 = createEnemy("Åsa", getDefaultArt(), "RUNESCAPE", "FERNET FOUNTAIN", "ROOKIESKÅL", 34);

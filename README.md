@@ -1,7 +1,7 @@
 # Rookie Revenge
 Rookie Revenge RPG is a completely string-based, turn-based RPG game made in Java. Set in an environment based on locations from [Umeå, Sweden], the game allows players to recruit and level up unique characters known as 'Rookies'. Explore various battlegrounds, engage in strategic battles to gain rewards and defeat the evil entities called "Pirayas".
 
-<img src="assets/stats.png" width="200"><img src="assets/battleground.png" width="200"><img src="assets/overworld.png" width="200">
+<img src="assets/stats.png" width="250"><img src="assets/battleground.png" width="250"><img src="assets/overworld.png" width="250">
 
 ## Features
 * **Turn Based Combat:** A logic-driven battle system featuring standard attacks, stat modifiers (Powerup/Weaken), dodging and critical hits.

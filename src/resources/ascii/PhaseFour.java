@@ -11,7 +11,7 @@ public class PhaseFour {
                 "  |_||_|\n";
     }
     public static String getPlayingChildArt() {
-        return   " |*******\\___ " +
+        return   " |*******\\___ \n" +
                 "  |___________\\\n" +
                 "   | (O)(O)\n" +
                 "  @        >\n" +
@@ -29,7 +29,7 @@ public class PhaseFour {
                 "                          Z... \n" +
                 "   .__.                 ._______.\n" +
                 "   |  |_|______.--------( I < x |*\n" +
-                "   |__|________________.*********\\n";
+                "   |__|________________.*********\\\n";
     }
     public static String getDefaultExamArt() {
         return   "  .____________.\n" +

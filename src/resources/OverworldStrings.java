@@ -5,7 +5,7 @@ import core.GameManager;
 public class OverworldStrings {
     public static String getOverworldString(GameManager gameManager) {
         if(gameManager.player.isDev()) return getOverworldState5String();
-        //if(gameManager.data.battlegrounds.get(9).isDefeated()) return getOverworldState5String(); // If East Pavilion is defeated
+        if(gameManager.data.battlegrounds.get(9).isDefeated()) return getOverworldState5String(); // If East Pavilion is defeated
         if(gameManager.data.battlegrounds.get(6).isDefeated()) return getOverworldState4String(); // If Rouge is defeated
         else if(gameManager.data.battlegrounds.get(4).isDefeated()) return getOverworldState3String(); // If skötet is defeated
         else if(gameManager.data.battlegrounds.get(2).isDefeated()) return getOverworldState2String(); // If datagym is defeated

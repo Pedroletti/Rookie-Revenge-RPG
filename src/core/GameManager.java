@@ -141,11 +141,12 @@ public class GameManager {
     }
 
     public void loadBattle(boolean VS) {
-        if(enemy.getMessage() != null) {
+        if(enemy.hasMessage()) {
             loadScene("...");
             gameState = GameState.STORY;
             return;
         }
+        enemy.toggleMessage();
 
         DefaultCaret caret = (DefaultCaret) display.getCaret();
         caret.setUpdatePolicy(DefaultCaret.NEVER_UPDATE);
@@ -231,7 +232,7 @@ public class GameManager {
                 display.append(nextText + "\n");
         } else {
             sr = null;
-            enemy.setMessage(null);
+            enemy.toggleMessage();
             loadBattle(true);
         }
     }

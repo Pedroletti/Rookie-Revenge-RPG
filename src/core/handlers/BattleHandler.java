@@ -24,6 +24,7 @@ public class BattleHandler {
     private boolean win;
     private boolean exit;
     private boolean next;
+    private boolean run;
 
 
     public BattleHandler(GameManager gameManager, Player player, Rookie enemy, StringReader sr, JTextArea display) {
@@ -36,6 +37,7 @@ public class BattleHandler {
         win = false;
         exit = false;
         next = false;
+        run = false;
     }
 
     public void handleSelection(String choice) {
@@ -58,6 +60,7 @@ public class BattleHandler {
                 processing(rookie.getMoves().get(2));
                 break;
             case "4": // run
+                run = true;
                 endGame();
                 break;
             default:
@@ -90,6 +93,7 @@ public class BattleHandler {
         if (gameManager.battleground.isLeague()) {
             gameManager.battleground.resetIndex();
         }
+        if(!run) player.setGold(player.getGold() - (player.getGold() / 4));
     }
 
     private void updateEndGameDisplay() {
@@ -144,7 +148,7 @@ public class BattleHandler {
         boolean player_first = (enemy.getSpeed() <= rookie.getSpeed());
         display.setText(getProcessingString(rookie, enemy));
 
-        Timer timer = new Timer(1200, new ActionListener() {
+        Timer timer = new Timer(900, new ActionListener() {
             int count = 0;
 
             @Override
@@ -233,7 +237,7 @@ public class BattleHandler {
                         count++;
                         break;
                     case 16:
-                        display.append("\n You lost " + player.getGold()/2 + " gold!");
+                        display.append("\n You lost " + player.getGold()/4 + " gold!");
                         count = 20;
                         break;
                     case 20:
@@ -262,8 +266,8 @@ public class BattleHandler {
             double damageCalc = ((( (2.0 * user.getLevel() / 5.0) + 2.0 ) * power * ( (double)a / d) ) / (divisor) + 2.0);
             int dmg = (int) damageCalc;
 
-            double baseAccuracy = 0.85;
-            double speedBonus = (user.getSpeed() - target.getSpeed()) / 100.0;
+            double baseAccuracy = 1;
+            double speedBonus = ((user.getSpeed() - target.getSpeed()) / 100.0) / 4;
             double finalHitChance = baseAccuracy + speedBonus;
 
             if (Math.random() > finalHitChance) {
